@@ -21,6 +21,12 @@ function App() {
       </header>
     </div>
   );
+    const toto = async () => {
+        await fetch("http://localhost:5656/", {
+            method: "POST",
+            mode: "cors",
+        });
+    };
 }
 
 export default App;
