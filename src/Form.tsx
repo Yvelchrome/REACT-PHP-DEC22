@@ -7,9 +7,14 @@ interface formDataInterface {
 const Form = () => {
     const mounted = useRef<Boolean>(false);
     const [formData, setFormData] = useState<formDataInterface>({
-        password: "",
         username: "",
+        password: "",
     });
+    const [isLogin, setIsLogin] = useState<Boolean>(true);
+
+    const handleClick = () => {
+        setIsLogin(!isLogin);
+    };
     useEffect(() => {
         if (!mounted.current) {
             fetch("http://localhost:5656")
@@ -26,7 +31,6 @@ const Form = () => {
                 [e.target.name]: e.target.value,
             };
         });
-        console.log(e.target);
     };
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -34,19 +38,59 @@ const Form = () => {
         fetch("http://localhost:5656", {
             method: "POST",
             mode: "cors",
+            body: new URLSearchParams({
+                ...formData,
+            }),
+            credentials: "include",
             headers: new Headers({
-                "Content-type": "application/json",
+                Authorization: "Basic dG90bzp0b3Rv",
+                "Content-type": "application/x-www-form-urlencoded",
             }),
         })
             .then((data) => data.text())
             .then((json) => console.log(json));
     };
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="username" onChange={handleChange} />
-            <input type="password" name="password" onChange={handleChange} />
-            <button type="submit">register</button>
-        </form>
+        <>
+            {isLogin ? (
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="username">Username</label>
+                    <input
+                        type="text"
+                        name="username"
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="password">Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        onChange={handleChange}
+                    />
+                    <button type="submit">Register</button>
+                </form>
+            ) : (
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="username">Username</label>
+                    <input
+                        type="text"
+                        name="username"
+                        onChange={handleChange}
+                    />
+                    <label htmlFor="password">Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        onChange={handleChange}
+                    />
+                    <button type="submit">Login</button>
+                </form>
+            )}
+            {isLogin ? (
+                <button onClick={handleClick}>Login</button>
+            ) : (
+                <button onClick={handleClick}>Register</button>
+            )}
+        </>
     );
 };
 
