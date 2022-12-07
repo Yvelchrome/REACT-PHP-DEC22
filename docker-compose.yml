@@ -2,8 +2,20 @@ version: "3.9"
 
 services:
   php:
-    image: php:8.1-apache
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
     - "5656:80"
     volumes:
     - ./app:/var/www/html
+
+  db:
+    image: "mariadb"
+    restart: always
+    environment:
+      MYSQL_DATABASE: data
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      # Pour lancer un dump automatiquement au montage du conteneur
+      - ./database/dump.sql:/docker-entrypoint-initdb.d/dump.sql
