@@ -1,15 +1,19 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import "./assets/css/scss/App.scss";
 import Form from "./Form";
 
 function App() {
-    return (
-        <div className="App">
-            <h1>Bienvenue</h1>
-            <Form />
-        </div>
-    );
+  const toto = async () => {
+    await fetch("http://localhost:5656/", {
+      method: "POST",
+      mode: "cors",
+    });
+  };
+  return (
+    <div>
+      <Form />
+    </div>
+  );
 }
 
 export default App;
