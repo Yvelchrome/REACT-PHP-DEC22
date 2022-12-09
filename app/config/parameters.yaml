@@ -1,0 +1,3 @@
+parameters:
+  string $baseDir: "/var/www/html/"
+  string $composerJson: "/var/www/html/composer.json"

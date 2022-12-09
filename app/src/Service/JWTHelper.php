@@ -1,15 +1,38 @@
 <?php
 
-require_once "vendor/autoload.php";
+namespace App\Service;
+
+
+/* use App\Factory\PDOFactory;
+use App\Manager\UserManager; */
 
 use App\Entity\User;
-use App\Factory\PDOFactory;
-use App\Manager\UserManager;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
-header("Access-Control-Allow-Origin: http://localhost:3000");
-header("Access-Control-Allow-Credentials: true");
-header("Access-Control-Allow-Headers: authorization, content-type");
-header("Content-Type: application/json");
+class JWTHelper
+{
+    public static function buildJWT(User $user): string
+    {
+        $payload = [
+            "username" => $user->getUsername(),
+            "exp" => (new \DateTime("+ 20 minutes"))->getTimestamp()
+        ];
+
+        return JWT::encode($payload, "mgkfjdslkgjfdkljshgfkld", "HS256");
+    }
+
+    public static function decodeJWT(string $jwt): ?object
+    {
+        try {
+            return JWT::decode($jwt, new Key("mgkfjdslkgjfdkljshgfkld", "HS256"));
+        } catch (\Exception $exception) {
+            return null;
+        }
+    }
+}
+
+/* 
 $json = file_get_contents("php://input");
 echo json_encode([
     "message" => "comprend pas ",
@@ -49,3 +72,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo " " . $signature . " " . $base64UrlSignature;
 }
 die;
+ */

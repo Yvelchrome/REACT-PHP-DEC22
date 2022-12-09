@@ -1,16 +1,32 @@
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useState,
+  useEffect,
+  useRef,
+  FormEvent,
+} from "react";
+import { useNavigate } from "react-router-dom";
 
-interface formDataInterface {
+export interface IFormData {
   username: string;
   password: string;
 }
 
-export default function Form() {
+export interface IConnectProps {
+  setUsername: Dispatch<SetStateAction<string>>;
+}
+
+export default function Form({ setUsername }: IConnectProps) {
+  const navigate = useNavigate();
   const mounted = useRef<Boolean>(false);
-  const [formData, setFormData] = useState<formDataInterface>({
+
+  const [formData, setFormData] = useState<IFormData>({
     username: "",
     password: "",
   });
+
   useEffect(() => {
     if (!mounted.current) {
       fetch("http://localhost:5656")
@@ -46,7 +62,10 @@ export default function Form() {
     })
       .then((data) => data.text())
       .then((json) => console.log(json));
+    setUsername(formData.username);
+    navigate("/");
   };
+
   const [form, setForm] = useState("login");
 
   return (
