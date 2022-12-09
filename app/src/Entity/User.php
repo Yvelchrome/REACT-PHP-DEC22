@@ -2,64 +2,58 @@
 
 namespace App\Entity;
 
-class User extends BaseEntity
+class User
 {
-    private int $userId;
-    private string $username;
-    private string $password;
+    private ?int $id;
+    private ?string $username;
+    private ?string $password;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getUserId(): int
+    public function getId(): ?int
     {
-        return $this->userId;
+        return $this->id;
     }
 
     /**
-     * @param int $userId
-     * @return User
+     * @param int|null $id
      */
-    public function setUserId(int $userId): User
+    public function setId(?int $id): void
     {
-        $this->userId = $userId;
-        return $this;
+        $this->id = $id;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getUsername(): string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
 
     /**
-     * @param string $username
-     * @return User
+     * @param string|null $username
      */
-    public function setUsername(string $username): User
+    public function setUsername(?string $username): self
     {
         $this->username = $username;
         return $this;
     }
 
-
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
     /**
-     * @param string $password
-     * @return User
+     * @param string|null $password
      */
-    public function setPassword(string $password): User
+    public function setPassword(?string $password): void
     {
         $this->password = $password;
-        return $this;
     }
 }

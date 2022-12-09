@@ -1,8 +1,0 @@
-@use "partials" as *;
-@import "../vendor/bootstrap-grid.min.css";
-
-// components
-@import "/src/components/Header/Header.scss";
-@import "/src/components/Form/Form.scss";
-@import "/src/components/Post/Post.scss";
-@import "/src/components/Blog-post/Blog-post.scss";

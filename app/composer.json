@@ -1,5 +1,5 @@
 {
-    "name": "loicjin/app",
+    "name": "jean-francois/src",
     "autoload": {
         "psr-4": {
             "App\\": "src/"
@@ -7,12 +7,12 @@
     },
     "authors": [
         {
-            "name": "Snwolfy",
-            "email": "97434478+Snwolfy@users.noreply.github.com"
+            "name": "John-Bob-DIRIENZO",
+            "email": "jf.dirienzo@gmail.com"
         }
     ],
     "require": {
-        "firebase/php-jwt": "^6.3",
-        "psr/container": "^2.0"
+        "psr/container": "^2.0",
+        "firebase/php-jwt": "^6.3"
     }
 }

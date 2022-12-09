@@ -1,12 +1,12 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '2b796c10f8df41386b3f451ab18c2a4367b0cd16',
-        'name' => 'loicjin/app',
+        'reference' => NULL,
+        'name' => 'jean-francois/src',
         'dev' => true,
     ),
     'versions' => array(
@@ -19,13 +19,13 @@
             'reference' => 'ddfaddcb520488b42bca3a75e17e9dd53c3667da',
             'dev_requirement' => false,
         ),
-        'loicjin/app' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
+        'jean-francois/src' => array(
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '2b796c10f8df41386b3f451ab18c2a4367b0cd16',
+            'reference' => NULL,
             'dev_requirement' => false,
         ),
         'psr/container' => array(

@@ -1,39 +1,33 @@
-version: "3.9"
+version: "3.8"
 
 services:
-  frontend:
-    build:
-      context: ./reactConf
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./frontend:/project
-    command: npm run start
+    frontend:
+        build:
+            context: ./reactConf
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./frontend:/project
+        command: npm run start
 
-  backend:
-    build:
-      context: ./phpConf
-      dockerfile: Dockerfile
-    restart: always
-    ports:
-      - "5656:80"
-    volumes:
-      - ./app:/var/www/html
+    backend:
+        build:
+            context: ./phpConf
+            dockerfile: Dockerfile
+        restart: always
+        ports:
+            - "1221:80"
+        volumes:
+            - ./app:/var/www/html
 
-  database:
-    image: mariadb
-    restart: always
-    volumes:
-      - ./database/dump.sql:/docker-entrypoint-initdb.d/dump.sql
-    environment:
-      MYSQL_DATABASE: data
-      MYSQL_ROOT_PASSWORD: password
+    database:
+        image: mariadb:10.8
+        restart: always
+        volumes:
+            - db-data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: password
 
-  phpmyadmin:
-    image: phpmyadmin
-    restart: always
-    ports:
-      - 8080:80
-    environment:
-      - PMA_ARBITRARY=1
+volumes:
+    db-data:
