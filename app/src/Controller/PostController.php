@@ -8,7 +8,7 @@ use App\Service\JWTHelper;
 
 class PostController extends BaseController
 {
-    #[Route('/toto', name: "app_mes_couilles", methods: ['GET'])]
+    #[Route('/', name: "app_mes_couilles", methods: ['GET'])]
     public function index()
     {
         $cred = str_replace("Bearer ", "", getallheaders()['authorization']);
@@ -20,7 +20,7 @@ class PostController extends BaseController
             die;
         }
 
-        $posts = [1, 12 , 3, 4];
+        $posts = [1, 12, 3, 4];
 
         $this->renderJSON([
             "posts" => $posts
